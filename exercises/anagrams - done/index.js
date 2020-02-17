@@ -12,8 +12,8 @@ function anagrams(stringA, stringB) {
   let wordMapA = {};
   let wordMapB = {};
 
-  let trimmedString1 = stringA.replace(/[^\w]/g, "");
-  let trimmedString2 = stringB.replace(/[^\w]/g, "");
+  let trimmedString1 = stringA.replace(/[^\w]/g, "").toLowerCase();
+  let trimmedString2 = stringB.replace(/[^\w]/g, "").toLowerCase();
 
   for (let i of trimmedString1) {
     if (wordMapA[i]) {
@@ -30,6 +30,9 @@ function anagrams(stringA, stringB) {
       wordMapB[i] = 1;
     }
   }
+
+  if (Object.keys(wordMapA).length !== Object.keys(wordMapB).length)
+    return false;
 
   let isAnagram = false;
   for (let obj in wordMapA) {
@@ -51,7 +54,7 @@ function anagrams(stringA, stringB) {
   return isAnagram;
 }
 
-let x = anagrams("One one", "One one c");
+let x = anagrams("One one", "One one");
 
 console.log(x);
 
